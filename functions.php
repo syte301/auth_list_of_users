@@ -13,11 +13,20 @@ function admin($user) {
 }
 
 function is_not_logged_in() {
-    if (! isset($_SESSION['email']))
-            return true;
-        else
-            return false;
+  if (! isset($_SESSION['email']))
+    return true;
+  else
+    return false;
 }
+
+
+// function is_not_logged_in($user) {
+//   if (! isset($_SESSION[$user['email']]))
+//     return true;
+//   else
+//     return false;
+// }
+
 
 function login($email, $password) {    //loggedIn()
     $user = get_user_by_email($email);
@@ -50,30 +59,29 @@ function set_flash_message($name, $message) {
 }
 
 function redirect_to($path) {
-    header("Location: {$path}");
-    exit;
+  header("Location: {$path}");
+  exit;
 }
 
 function add_user($email, $password) {
-    $pdo = new PDO("mysql:host=localhost;dbname=db_auth", "root", "");
+  $pdo = new PDO("mysql:host=localhost;dbname=db_auth", "root", "");
 
-    $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+  $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
 
-    $statement = $pdo->prepare($sql);
-    $result = $statement->execute([
-        "email" => $email,
-        "password" => password_hash($password, PASSWORD_DEFAULT)
+  $statement = $pdo->prepare($sql);
+  $result = $statement->execute([
+      "email" => $email,
+      "password" => password_hash($password, PASSWORD_DEFAULT)
     ]);
 
-
-    return $pdo->lastInsertId();
+  return $pdo->lastInsertId();
 }
 
 function display_flash_message($name) {
-      if(isset($_SESSION[$name])) {
-          echo "<div class=\"alert alert-{$name} text-dark\" role=\"alert\">{$_SESSION[$name]}</div>";
-          unset($_SESSION[$name]);
-      }
+  if(isset($_SESSION[$name])) {
+    echo "<div class=\"alert alert-{$name} text-dark\" role=\"alert\">{$_SESSION[$name]}</div>";
+    unset($_SESSION[$name]);
+  }
 }
 
 ?>

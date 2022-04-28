@@ -9,9 +9,9 @@ $password = $_POST["password"];
 
 $user = get_user_by_email($email);
 
-if(! empty($user)) {
-    set_flash_message("danger", "Этот электронный адрес уже занят другим пользователем.");
-      redirect_to("page_register.php");
+if (! empty($user)) {
+  set_flash_message("danger", "Этот электронный адрес уже занят другим пользователем.");
+  redirect_to("page_register.php");
 }
 
 // var_dump($email, $password);die;

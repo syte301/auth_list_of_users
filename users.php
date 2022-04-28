@@ -3,7 +3,11 @@ session_start();
 require "functions.php";
 
 // var_dump($_SESSION['email']);die;
-if (is_not_logged_in()) {
+$user = get_user_by_email($_SESSION['email']);
+// var_dump($user['email']);die;
+
+
+if (is_not_logged_in($user)) {
     redirect_to("page_login.php");
 }
 
@@ -12,6 +16,8 @@ if (is_not_logged_in()) {
 // }
 
  ?>
+
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +173,7 @@ if (is_not_logged_in()) {
                           </div>
 
                     <?php endforeach; ?>
-              
+
 
                 <!-- <div class="col-xl-4">
                     <div id="c_2" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="alita gray">

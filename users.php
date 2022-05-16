@@ -8,7 +8,7 @@ $user = get_user_by_email($_SESSION['email']);
 
 
 if (is_not_logged_in($user)) {
-    redirect_to("page_login.php");
+  redirect_to("page_login.php");
 }
 
 // if (admin()) {
@@ -17,7 +17,7 @@ if (is_not_logged_in($user)) {
 
  ?>
 
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,10 +65,8 @@ if (is_not_logged_in($user)) {
             <div class="row">
                 <div class="col-xl-12">
                     <?php
-                        $user = get_user_by_email($_SESSION['email']);
-
                         if (admin($user)) {
-                            echo '<a class="btn btn-success" href="create_user.html">Добавить</a>';
+                          echo '<a class="btn btn-success" href="create_user.html">Добавить</a>';
                         }
                     ?>
                     <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
@@ -105,7 +103,7 @@ if (is_not_logged_in($user)) {
                                           <div class="info-card-text flex-1">
                                               <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                                   Oliver Kopyov
-                                                  <?php if(($user['role'] == 'admin') or ($user['id'] == 1)): ?>
+                                                  <?php if(($user['role'] == 'admin'): ?>
                                                       <?php echo '<i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>'; ?>
                                                       <?php echo '<i class="fal fa-angle-down d-inline-block ml-1 fs-md"></i>'; ?>
                                                   <?php endif;?>
@@ -115,7 +113,7 @@ if (is_not_logged_in($user)) {
 
                                               <div class="dropdown-menu">
 
-                                                <?php if(($user['role'] == 'admin') or ($user['id'] == 1)): ?>
+                                                <?php if(($user['role'] == 'admin'): ?>
                                                       <a class="dropdown-item" href="example.com/edit?id=<?php echo $user['id'];?>">
                                                           <i class="fa fa-edit"></i>
                                                       Редактировать</a>

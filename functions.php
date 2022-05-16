@@ -6,10 +6,10 @@
 
 
 function admin($user) {
-    // var_dump($user);die;
-    if ($user['role'] == 'admin') {
-        return true;
-    }
+  // var_dump($user);die;
+  if ($user['role'] == 'admin') {
+      return true;
+  }
 }
 
 function is_not_logged_in() {
@@ -29,17 +29,18 @@ function is_not_logged_in() {
 
 
 function login($email, $password) {    //loggedIn()
-    $user = get_user_by_email($email);
-    //var_dump($user);die; //здесь выводит логическое значение а нужно пользователя и пароль hash
+  $user = get_user_by_email($email);
+  //var_dump($user);die; //здесь выводит логическое значение а нужно пользователя и пароль hash
 
-    if (empty($user) or !(password_verify($password, $user['password']))) {
-        set_flash_message("danger","Такого пользователя не существует");
-        // var_dump(set_flash_message());
-        return false;
-    }
-    //authorization user code
-    $_SESSION['email'] = $email;
-    return true;
+  if (empty($user) or !(password_verify($password, $user['password']))) {
+      set_flash_message("danger","Такого пользователя не существует");
+      // var_dump(set_flash_message());
+      return false;
+  }
+
+  //authorization user code
+  $_SESSION['email'] = $email;
+  return true;
 }
 
 function get_user_by_email($email) {
